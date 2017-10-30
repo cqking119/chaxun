@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+       default-lazy-init="true">
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url">
+            <value>${jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${jdbc.password}</value>
+        </property>
+        <property name="filters">
+            <value>stat,log4j</value>
+        </property>
+        <property name="maxActive">
+            <value>${jdbc.maxActive}</value>
+        </property>
+        <property name="initialSize">
+            <value>${jdbc.initialSize}</value>
+        </property>
+        <property name="maxWait">
+            <value>${jdbc.maxWait}</value>
+        </property>
+        <property name="timeBetweenEvictionRunsMillis">
+            <value>${jdbc.timeBetweenEvictionRunsMillis}</value>
+        </property>
+        <property name="validationQuery">
+            <value>${jdbc.validationQuery}</value>
+        </property>
+        <property name="testWhileIdle">
+            <value>${jdbc.testWhileIdle}</value>
+        </property>
+        <property name="testOnBorrow">
+            <value>${jdbc.testOnBorrow}</value>
+        </property>
+        <property name="testOnReturn">
+            <value>${jdbc.testOnReturn}</value>
+        </property>
+        <property name="poolPreparedStatements">
+            <value>true</value>
+        </property>
+    </bean>
+    <!--先通过spring自动创建sqlsessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mapper/mybatis/sqlmapconfig.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+
+    </bean>
+    <!--在通过spring自动创建sqlsession-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+    <!--ref就是找配置文件里面的bean，比如说sqlsession就需要找sqlsessionfactory创建，所以他参照了上面的bean-->
+    <task:scheduler id="scheduler" pool-size="10" />
+    <task:executor id="executor" keep-alive="3600" pool-size="100-200"
+                   queue-capacity="500" rejection-policy="CALLER_RUNS" />
+    <!--创建事务驱动器-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--ref参照了上面的datasource，也就是通过了datasource创建了事务驱动-->
+
+
+
+</beans>

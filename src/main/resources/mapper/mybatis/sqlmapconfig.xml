@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+        <!--<typeAlias alias="QueryCondition" type="com.netease.devilfish.model.dto.common.QueryCondition"/>-->
+        <!--指定mybatis到entity目录下找到相应的实体类-->
+        <package name="entity"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="oracle"/>
+            <property name="supportMethodsArguments" value="true"/>
+            <!--<property name="rowBoundsWithCount" value="true"/>-->
+        </plugin>
+    </plugins>
+</configuration>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis .org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 配置文件路径 -->
+    <properties url="file:///C:\Users\Malu\IdeaProjects\chaxun\src\main\resources\generatorConfig.properties"/>
+
+    <!--数据库驱动包路径 -->
+    <classPathEntry location="D:/bs2/XERP/ojdbc6-11.2.0.1.0.jar"/>
+
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+        <!--关闭注释 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接信息 -->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:cwgsdb" userId="nstcsa" password="a1111111">
+
+        </jdbcConnection>
+
+        <!--生成的model 包路径 -->
+        <javaModelGenerator targetPackage="entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="ture"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成xml mapper文件 路径 -->
+        <sqlMapGenerator targetPackage="entity" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--&lt;!&ndash; 生成的Dao接口 的包路径 &ndash;&gt;-->
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="${dao.package}" targetProject="${target.project}">-->
+            <!--<property name="enableSubPackages" value="ture"/>-->
+        <!--</javaClientGenerator>-->
+
+        <!--对应数据库表名 -->
+        <table tableName="wst_cashsweep" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="True" selectByExampleQueryId="True">
+        </table>
+    </context>
+</generatorConfiguration>
