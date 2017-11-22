@@ -24,5 +24,5 @@ public interface AcntdataDao {
     List<WstCashExport> queryCashweepbyclt(String s1, String s2, int page, int rownum) throws Exception;
      List<WstCashExport> queryAcntCashsweepbyyili(String s1, String s2, int page, int rownum) throws Exception;
      List<WstCashExport> queryAcntCashsweepbytonghua(String s1, String s2, int page, int rownum) throws Exception;
-   List<WstCashExport> queryAcntCashsweeptoexport(String s1, String s2) throws Exception;
+   List<WstCashExport> queryAcntCashsweeptoexport(String s1, String s2) throws Exception;//nothing
 }
