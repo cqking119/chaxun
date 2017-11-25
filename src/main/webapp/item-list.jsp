@@ -30,8 +30,8 @@
             <th data-options="field:'acntno',width:100">银行账号</th>
             <th data-options="field:'actdate',width:100,formatter:TAOTAO.formatDateTime">发生日期</th>
             <th data-options="field:'inamount',width:70,align:'right'" >收入</th>
-            <th data-options="field:'outamount',width:70,align:'right'">支出</th>
             <th data-options="field:'balance',width:100" >发生额</th>
+            <th data-options="field:'outamount',width:70,align:'right'">支出</th>
             <th data-options="field:'state',width:60,align:'center'">状态</th>
             <th data-options="field:'totalbalance',width:130,align:'center'">当日余额</th>
         </tr>
@@ -42,7 +42,8 @@
 
 <%--查询块表单--%>
 <div id="searchtool" style="padding:5px">
-    <span>单位编号:</span><input type="text" id="cltno" value="" size=10 />
+    <span><a href="#"  onclick=popup('cltno.jsp','单位') >单位编号:</a></span>
+    <input type="text" id="cltno" value="" size=10 onclick="acquiredata()"/>
     <span>银行账号:</span><input type="text" id="acntno" value="" size=10 />
     <span>初始日期:</span><input type="text" id ="startdate"  class="easyui-datebox" value="" size=10 />
     <span>截至日期:</span><input type="text" id ="enddate" class="easyui-datebox"value="" size=10 />
@@ -140,9 +141,12 @@
 //
 //    });
 //
+function popup(fname,wname)
+{
+    window.open(fname,wname,"toolbar=no,menubar=no,directories=no,status=no,width=600,height=450,scrollbars=yes,resizable=no");
+}
 
         function ProcessData() {  //查询数据javascript,这里不用加url,load方法会自动加参数,注意databox取参数需要特定的databox方法
-      alert("陈奇")
             $('#itemList').datagrid('load', {
                     cltno: $('#cltno').val(),
                     acntno: $('#acntno').val(),
@@ -157,7 +161,13 @@
             );
         }
 
+  function acquiredata(){
 
+      var  str=localStorage.getItem("text");
+
+         $("#cltno").val(str);
+
+  }
 //        var test = document.getElementById("ff").innerHTML;
 //        var param={key:3};
 

@@ -11,6 +11,9 @@
 <script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" charset="utf-8" src="lib/ueditor/1.4.3/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="lib/ueditor/1.4.3/ueditor.all.js"> </script>
+	<script type="text/javascript" charset="utf-8" src="lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <style type="text/css">
 	.content {
 		padding: 10px 10px 10px 10px;
@@ -29,13 +32,20 @@
 	         	</ul>
          	</li>
          	<li>
-         		<span>网站内容管理</span>
+         		<span>知识库管理系统</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'content-category'}">内容分类管理</li>
-	         		<li data-options="attributes:{'url':'content'}">内容管理</li>
+	         		<li data-options="attributes:{'url':'test.html'}">新知识添加</li>
+	         		<li data-options="attributes:{'url':'content'}">知识查看</li>
 	         	</ul>
          	</li>
-         </ul>
+		<li>
+			<span>文件传送系统</span>
+			<ul>
+				<li data-options="attributes:{'url':'content-category'}">新文件上传</li>
+				<li data-options="attributes:{'url':'content'}">文件下载</li>
+			</ul>
+		</li>
+		</ul>
     </div>
     <div data-options="region:'center',title:''">
     	<div id="tabs" class="easyui-tabs">
