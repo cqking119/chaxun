@@ -13,7 +13,7 @@
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
         <property name="url">
-            <value>jdbc:oracle:thin:@127.0.0.1:cwgsdb</value>
+            <value>jdbc:oracle:thin:@10.1.188.223:1521:cwgsdb</value>
         </property>
         <property name="username">
             <value>${jdbc.username}</value>
