@@ -23,11 +23,28 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <task:annotation-driven executor="executor" scheduler="scheduler" />
 	<mvc:annotation-driven />
+	<!--转换中文字符问题-->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/"/>
+	</bean>
+	<bean id="htmlviewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="suffix" value=".html" />
+		<property name="order" value="0"/>
+		<property name="contentType" value="text/html;charset=UTF-8"/>
+	</bean>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
+		<property name="order" value="1"/>
 	</bean>
 	<!-- 支持上传文件 -->
 	<bean id="multipartResolver"
